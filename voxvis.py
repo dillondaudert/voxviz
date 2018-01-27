@@ -7,8 +7,8 @@ def _to_cube(origin):
     Args:
         origin - a 3-tuple, the origin of the cube
     Returns:
-        (x, y, z, i, j, k) - 6 integer arrays.
-            x, y, z are the cube vertices,
+        (x, y, z, i, j, k) - tuple of list(int)
+            x, y, z are the cube vertices
             i, j, k are the cube faces
     '''
 
@@ -25,9 +25,11 @@ def _to_cube(origin):
     return x, y, z, i, j, k
 
 def mesh_cubes(vox_image: np.ndarray):
-    '''Turn a 3d array of 0, 1 values into a list of plotly.go.Mesh3d objects
-    that can be plotted.
-    Return a list of cubes as Mesh3d objects
+    '''Turn a 3d array into a list of plotly.go.Mesh3d objects
+    Args:
+        vox_image - a numpy.ndarray of binary values
+    Returns:
+        cubes - a list of cubes as Mesh3d objects
     '''
 
     # must be a 3-d array
@@ -51,7 +53,7 @@ def mesh_cubes(vox_image: np.ndarray):
                             i = cube[3],
                             j = cube[4],
                             k = cube[5],
-                            showscale=True,
+                            hoverinfo='none',
                             color='blue'
                         )
                     )
